@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Validação</title>
+    <style>
+        .mensagem {
+            margin-top: 10px;
+        }
+
+        .mensagem.positiva {
+            color: green;
+        }
+
+        .mensagem.negativa {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="meuFormulario">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required><br><br>
+
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required><br><br>
+
+        <button type="submit">Submeter</button>
+    </form>
+
+    <div id="mensagem" class="mensagem"></div>
+
+    <script>
+        document.getElementById('meuFormulario').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var campoA = parseFloat(document.getElementById('campoA').value);
+            var campoB = parseFloat(document.getElementById('campoB').value);
+            var mensagemDiv = document.getElementById('mensagem');
+
+            if (campoB > campoA) {
+                mensagemDiv.textContent = "Formulário válido!";
+                mensagemDiv.className = 'mensagem positiva';
+            } else {
+                mensagemDiv.textContent = "Formulário inválido. O Campo B deve ser maior que o Campo A.";
+                mensagemDiv.className = 'mensagem negativa';
+            }
+        });
+    </script>
+</body>
+
+</html>
